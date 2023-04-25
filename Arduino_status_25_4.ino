@@ -10,6 +10,9 @@ void setup() {
   unsigned long currentMillis = millis();  // get the current time
   if (currentMillis - previousMillis >= intervalSetup) {
     previousMillis = currentMillis;  // update the previous time
+  pinMode(24, OUTPUT);
+  pinMode(26, INPUT);
+
   }
 
 }
@@ -17,12 +20,12 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(isPinHIGH(3)){
+  if(isPinRecifingHIGH(3)){
     Serial.println("Pin Ishigh");
   }
 }
 
-bool isPinHIGH(int pin){
+bool isPinRecifingHIGH(int pin){
   pinMode(pin, INPUT);
   int pinState = digitalRead(pin);
   if(pinState == HIGH){
@@ -67,5 +70,3 @@ bool handshake(){
     }
   }
 }
-
-
