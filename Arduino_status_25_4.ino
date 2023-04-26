@@ -10,6 +10,17 @@ void setup() {
   unsigned long currentMillis = millis();  // get the current time
   if (currentMillis - previousMillis >= intervalSetup) {
     previousMillis = currentMillis;  // update the previous time
+    pinMode(24, INPUT);
+    pinMode(26, INPUT);
+    pinMode(28, INPUT);
+    pinMode(30, INPUT);
+    pinMode(32, INPUT);
+    pinMode(34, INPUT);
+    pinMode(36, INPUT);
+    pinMode(38, INPUT);
+    pinMode(40, INPUT);
+    pinMode(42, INPUT);
+
   }
 
 }
@@ -67,5 +78,3 @@ bool handshake(){
     }
   }
 }
-
-
