@@ -3,6 +3,7 @@ const unsigned long intervalSetup = 500;  // interval for the delay in setup in 
 const unsigned long intervalHandshake = 100;  // interval for the delay in the handshake in milliseconds
 unsigned long dbTimeArray [13][120] = {0};
 signed int lastWrittenLine = 1;
+bool hasLinecountIncreased = false;
 
 void setup() {
   // put your setup code here, to run once:
@@ -36,8 +37,12 @@ bool checkpin(int pin){
 }
 
 void sendDataViaUSB(){
+  if(hasLinecountIncreased){
+    for(int i = 1; i < 11; i++){
+      Serial.digitalWrite(dbTimeArray[lastWrittenLine][i]);
+    }
+  }
 
-  Serial.digitalWrite()
 }
 
 bool handshake(){
@@ -123,6 +128,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -139,6 +145,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -155,6 +162,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -171,6 +179,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -187,6 +196,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -203,6 +213,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -219,6 +230,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -235,6 +247,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -251,6 +264,7 @@ void getTimeOfWagon(){
       else{
         lastWrittenLine++;
         i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
@@ -266,7 +280,8 @@ void getTimeOfWagon(){
       }
       else{
         lastWrittenLine++;
-        i = lastWrittenLine;        
+        i = lastWrittenLine;
+        hasLinecountIncreased = true;
       }
     }
   }
