@@ -2,6 +2,7 @@ unsigned long previousMillis = 0;  // variable to store the previous time
 const unsigned long intervalSetup = 500;  // interval for the delay in setup in milliseconds
 const unsigned long intervalHandshake = 100;  // interval for the delay in the handshake in milliseconds
 unsigned long dbTimeArray [13][120] = {0};
+signed int lastWrittenLine = 1;
 
 void setup() {
   // put your setup code here, to run once:
@@ -34,6 +35,10 @@ bool checkpin(int pin){
   }
 }
 
+void sendDataViaUSB(){
+
+  Serial.digitalWrite()
+}
 
 bool handshake(){
   bool hasfinished1, hasfinished2 = false;
@@ -110,13 +115,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[1][i] != 0){
         dbTimeArray[1][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -125,13 +131,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[2][i] != 0){
         dbTimeArray[2][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -140,13 +147,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[3][i] != 0){
         dbTimeArray[3][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -155,13 +163,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[4][i] != 0){
         dbTimeArray[4][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -170,13 +179,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[5][i] != 0){
         dbTimeArray[5][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -185,13 +195,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[6][i] != 0){
         dbTimeArray[6][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -200,13 +211,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[7][i] != 0){
         dbTimeArray[7][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -215,13 +227,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[8][i] != 0){
         dbTimeArray[8][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -230,13 +243,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[9][i] != 0){
         dbTimeArray[9][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;
       }
     }
   }
@@ -245,13 +259,14 @@ void getTimeOfWagon(){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
     while(hasBeenWritten != true){
-      int i = 1;
+      int i = lastWrittenLine;
       if(dbTimeArray[10][i] != 0){
         dbTimeArray[10][i] = passTime;
         hasBeenWritten;
       }
       else{
-        i++;
+        lastWrittenLine++;
+        i = lastWrittenLine;        
       }
     }
   }
