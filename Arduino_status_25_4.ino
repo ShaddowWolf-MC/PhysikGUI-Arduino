@@ -1,7 +1,7 @@
 unsigned long previousMillis = 0;  // variable to store the previous time
 const unsigned long intervalSetup = 500;  // interval for the delay in setup in milliseconds
 const unsigned long intervalHandshake = 100;  // interval for the delay in the handshake in milliseconds
-unsigned long dbTimeArray [13][30] = {0};
+unsigned long dbTimeArray [13][120] = {0};
 
 void setup() {
   // put your setup code here, to run once:
@@ -34,22 +34,6 @@ bool checkpin(int pin){
   }
 }
 
-void getTimeOfWagon(){
-  bool hasBeenWritten = false;
-  if(checkpin(24)){
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = 1;
-      if(dbTimeArray[1][i] != 0){
-        dbTimeArray[1][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        i++;
-      }
-    }
-  }
-}
 
 bool handshake(){
   bool hasfinished1, hasfinished2 = false;
@@ -118,4 +102,159 @@ setPinModes(){
   digitalWrite(39, HIGH);
   digitalWrite(41, HIGH);
   digitalWrite(42, HIGH);
+}
+
+
+void getTimeOfWagon(){
+  if(checkpin(24)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[1][i] != 0){
+        dbTimeArray[1][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(26)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[2][i] != 0){
+        dbTimeArray[2][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(28)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[3][i] != 0){
+        dbTimeArray[3][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(30)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[4][i] != 0){
+        dbTimeArray[4][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(32)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[5][i] != 0){
+        dbTimeArray[5][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(34)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[6][i] != 0){
+        dbTimeArray[6][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(36)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[7][i] != 0){
+        dbTimeArray[7][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(38)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[8][i] != 0){
+        dbTimeArray[8][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(40)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[9][i] != 0){
+        dbTimeArray[9][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+  if(checkpin(42)){
+    bool hasBeenWritten = false;
+    unsigned long passTime = millis();
+    while(hasBeenWritten != true){
+      int i = 1;
+      if(dbTimeArray[10][i] != 0){
+        dbTimeArray[10][i] = passTime;
+        hasBeenWritten;
+      }
+      else{
+        i++;
+      }
+    }
+  }
+
+
 }
