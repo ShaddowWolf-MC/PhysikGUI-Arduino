@@ -153,7 +153,7 @@ void getTimeOfWagon(){
       }
     }
   }
-
+#E
   if(checkpin(28)){
     bool hasBeenWritten = false;
     unsigned long passTime = millis();
@@ -277,7 +277,7 @@ void getTimeOfWagon(){
       }
       else{
         lastWrittenLine++;
-        i = lastWrittenLine;        
+        i = lastWrittenLine;
       }
     }
   }
