@@ -1,12 +1,10 @@
 unsigned long previousMillis = 0;  // variable to store the previous time
 const unsigned long intervalSetup = 500;  // interval for the delay in setup in milliseconds
 const unsigned long intervalHandshake = 100;  // interval for the delay in the handshake in milliseconds
-<<<<<<< HEAD
-
-=======
 unsigned long dbTimeArray [13][120] = {0};
-signed int lastWrittenLine = 1;
->>>>>>> parent of 0cb1014 (Fixed array support)
+signed int workingLine = 1;
+
+
 
 void setup() {
   // put your setup code here, to run once:
@@ -41,14 +39,12 @@ bool isPinRecifingHIGH(int pin){
   }
 }
 
-<<<<<<< HEAD
-=======
 void sendDataViaUSB(){
 
-  Serial.digitalWrite()
+  Serial.digitalWrite("E");
 }
 
->>>>>>> parent of 0cb1014 (Fixed array support)
+
 bool handshake(){
   bool hasfinished1, hasfinished2 = false;
   string recive1, recive2;
@@ -83,8 +79,7 @@ bool handshake(){
     }
   }
 }
-<<<<<<< HEAD
-=======
+
 
 setPinModes(){
   pinMode(24, INPUT); //first input pin
@@ -97,6 +92,7 @@ setPinModes(){
   pinMode(38, INPUT);
   pinMode(40, INPUT);
   pinMode(42, INPUT); //last input pin
+
   pinMode(25, OUTPUT); // power pins for the sensors
   pinMode(27, OUTPUT);
   pinMode(29, OUTPUT);
@@ -122,166 +118,54 @@ setPinModes(){
 
 
 void getTimeOfWagon(){
-  if(checkpin(24)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[1][i] != 0){
-        dbTimeArray[1][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(24)){ //First Sensor
+    double timeAtPin = millis;
+    dbTimeArray[1][workingLine] = timeAtPin;
   }
 
-  if(checkpin(26)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[2][i] != 0){
-        dbTimeArray[2][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
-  }
-#E
-  if(checkpin(28)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[3][i] != 0){
-        dbTimeArray[3][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(26)){ //Second Sensor
+    double timeAtPin = millis;
+    dbTimeArray[2][workingLine] = timeAtPin;
   }
 
-  if(checkpin(30)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[4][i] != 0){
-        dbTimeArray[4][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(28)){ //Third Sensor
+    double timeAtPin = millis;
+    dbTimeArray[3][workingLine] = timeAtPin;
   }
 
-  if(checkpin(32)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[5][i] != 0){
-        dbTimeArray[5][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(30)){ //Forth Sensor
+    double timeAtPin = millis;
+    dbTimeArray[4][workingLine] = timeAtPin;
   }
 
-  if(checkpin(34)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[6][i] != 0){
-        dbTimeArray[6][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(32)){ //Fith Sensor
+    double timeAtPin = millis;
+    dbTimeArray[5][workingLine] = timeAtPin;
   }
 
-  if(checkpin(36)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[7][i] != 0){
-        dbTimeArray[7][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(34)){ //Sixth Sensor
+    double timeAtPin = millis;
+    dbTimeArray[6][workingLine] = timeAtPin;
   }
 
-  if(checkpin(38)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[8][i] != 0){
-        dbTimeArray[8][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(36)){ //Seventh Sensor
+    double timeAtPin = millis;
+    dbTimeArray[7][workingLine] = timeAtPin;
   }
 
-  if(checkpin(40)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[9][i] != 0){
-        dbTimeArray[9][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(38)){ //Eigth Sensor
+    double timeAtPin = millis;
+    dbTimeArray[8][workingLine] = timeAtPin;
   }
 
-  if(checkpin(42)){
-    bool hasBeenWritten = false;
-    unsigned long passTime = millis();
-    while(hasBeenWritten != true){
-      int i = lastWrittenLine;
-      if(dbTimeArray[10][i] != 0){
-        dbTimeArray[10][i] = passTime;
-        hasBeenWritten;
-      }
-      else{
-        lastWrittenLine++;
-        i = lastWrittenLine;
-      }
-    }
+  if(isPinRecifingHIGH(40)){ //Nineth Sensor
+    double timeAtPin = millis;
+    dbTimeArray[9][workingLine] = timeAtPin;
   }
 
-
+  if(isPinRecifingHIGH(42)){ //Tenth Sensor
+    double timeAtPin = millis;
+    dbTimeArray[10][workingLine] = timeAtPin;
+    workingLine = workingLine + 1;
+  }
 }
->>>>>>> parent of 0cb1014 (Fixed array support)
