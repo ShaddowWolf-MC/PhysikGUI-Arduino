@@ -44,7 +44,7 @@ void sendDataViaUSB(){
 
   Serial.digitalWrite("E");
 
-  
+
 }
 
 
@@ -57,7 +57,7 @@ bool handshake(){
       if(recive1 != "C"){
       }
       else{
-        Serial.println('C');
+        Serial.println("C");
         hasfinished1 = true;
         unsigned long currentMillis = millis();  // get the current time
         if (currentMillis - previousMillis >= intervalHandshake) {
