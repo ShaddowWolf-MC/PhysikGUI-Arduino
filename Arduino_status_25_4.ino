@@ -1,6 +1,6 @@
-unsigned long previousMillis = 0;  // variable to store the previous time
-const unsigned long intervalSetup = 500;  // interval for the delay in setup in milliseconds
-const unsigned long intervalHandshake = 100;  // interval for the delay in the handshake in milliseconds
+unsigned long previousmillis = 0;  // variable to store the previous time
+const unsigned long intervalSetup = 500;  // interval for the delay in setup in millis()econds
+const unsigned long intervalHandshake = 100;  // interval for the delay in the handshake in millis()econds
 unsigned long dbTimeArray [13][120] = {0};
 signed int workingLine = 1;
 bool dataAtSensor1, dataAtSensor2, dataAtSensor3, dataAtSensor4, dataAtSensor5 = false;
@@ -11,9 +11,10 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   handshake();
-  unsigned long currentMillis = millis();  // get the current time
-  if (currentMillis - previousMillis >= intervalSetup) {
-    previousMillis = currentMillis;  // update the previous time
+  unsigned long currentmillis = millis();  // get the current time
+  if (currentmillis - previousmillis >= intervalSetup) {
+    previousmillis = currentmillis;  // update the previous time
+  Serial.println("TestSerialDebug");
   pinMode(24, OUTPUT);
   pinMode(26, INPUT);
 
@@ -40,28 +41,29 @@ bool isPinRecifingHIGH(int pin){
   }
 }
 
-void sendDataViaUSB(){
+//void sendDataViaUSB(){
 
-  Serial.digitalWrite("E");
+//Serial.digitalWrite("")
 
 
-}
+//}
 
 
 bool handshake(){
   bool hasfinished1, hasfinished2 = false;
-  string recive1, recive2;
+  String recive1, recive2;
   while(hasfinished1 != true){
     if(Serial.available() != 0){
       recive1 = Serial.readStringUntil('\r');
       if(recive1 != "C"){
+        delay(1);
       }
       else{
         Serial.println("C");
         hasfinished1 = true;
-        unsigned long currentMillis = millis();  // get the current time
-        if (currentMillis - previousMillis >= intervalHandshake) {
-          previousMillis = currentMillis;  // update the previous time
+        unsigned long currentmillis = millis();  // get the current time
+        if (currentmillis - previousmillis >= intervalHandshake) {
+          previousmillis = currentmillis;  // update the previous time
         }
       }
     }
@@ -73,9 +75,9 @@ bool handshake(){
       }
       else{
         hasfinished2 = true;
-        unsigned long currentMillis = millis();  // get the current time
-        if (currentMillis - previousMillis >= intervalHandshake) {
-          previousMillis = currentMillis;  // update the previous time
+        unsigned long currentmillis = millis();  // get the current time
+        if (currentmillis - previousmillis >= intervalHandshake) {
+          previousmillis = currentmillis;  // update the previous time
         }
         return true;
       }
@@ -84,7 +86,7 @@ bool handshake(){
 }
 
 
-setPinModes(){
+void setPinModes(){
   pinMode(24, INPUT); //first input pin
   pinMode(26, INPUT);
   pinMode(28, INPUT);
@@ -122,61 +124,61 @@ setPinModes(){
 
 void getTimeOfWagon(){
   if(isPinRecifingHIGH(24)){ //First Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[1][workingLine] = timeAtPin;
     dataAtSensor1 = true;
   }
 
   if(isPinRecifingHIGH(26)){ //Second Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[2][workingLine] = timeAtPin;
     dataAtSensor2 = true;
   }
 
   if(isPinRecifingHIGH(28)){ //Third Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[3][workingLine] = timeAtPin;
     dataAtSensor3 = true;
   }
 
   if(isPinRecifingHIGH(30)){ //Forth Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[4][workingLine] = timeAtPin;
     dataAtSensor4 = true;
   }
 
   if(isPinRecifingHIGH(32)){ //Fith Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[5][workingLine] = timeAtPin;
     dataAtSensor5 = true;
   }
 
   if(isPinRecifingHIGH(34)){ //Sixth Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[6][workingLine] = timeAtPin;
     dataAtSensor6 = true;
   }
 
   if(isPinRecifingHIGH(36)){ //Seventh Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[7][workingLine] = timeAtPin;
     dataAtSensor7 = true;
   }
 
   if(isPinRecifingHIGH(38)){ //Eigth Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[8][workingLine] = timeAtPin;
     dataAtSensor8 = true;
   }
 
   if(isPinRecifingHIGH(40)){ //Nineth Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[9][workingLine] = timeAtPin;
     dataAtSensor9 = true;
   }
 
   if(isPinRecifingHIGH(42)){ //Tenth Sensor
-    double timeAtPin = millis;
+    double timeAtPin = millis();
     dbTimeArray[10][workingLine] = timeAtPin;
     dataAtSensor10 = true;
     workingLine = workingLine + 1;
