@@ -5,6 +5,10 @@ unsigned long dbTimeArray [13][120] = {0};
 signed int workingLine = 1;
 bool dataAtSensor1, dataAtSensor2, dataAtSensor3, dataAtSensor4, dataAtSensor5 = false;
 bool dataAtSensor6, dataAtSensor7, dataAtSensor8, dataAtSensor9, dataAtSensor10 = false;
+bool isSensorBlocked = false;
+unsigned long blockStartMillis = 0;
+const unsigned long blockDurationMillis = 2500;
+
 
 
 void setup() {
@@ -12,114 +16,126 @@ void setup() {
   Serial.begin(115200);
   handshake();
   unsigned long currentmillis = millis();  // get the current time
-  if (currentmillis - previousmillis >= intervalSetup) {
+  while(currentmillis - previousmillis >= intervalSetup) {
     previousmillis = currentmillis;  // update the previous time
-  Serial.println("TestSerialDebug");
-  pinMode(24, OUTPUT);
-  pinMode(26, INPUT);
-
   }
+  setPinModes();
+  Serial.println("Finnished Setup, entering Loop!");
 
 }
 
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(isPinRecifingHIGH(3)){
-    Serial.println("Pin Ishigh");
-  }
+  getTimeOfWagon();
+  sendDataViaUSB();
 }
+
+
 
 bool isPinRecifingHIGH(int pin){
   pinMode(pin, INPUT);
-  int pinState = digitalRead(pin);
-  if(pinState == HIGH){
-    return true;
+  while(isSensorBlocked){
+    unsigned long currentMillis = millis();
+    if (currentMillis - blockStartMillis >= blockDurationMillis) {
+      // block period has elapsed, unblock the pin
+      isSensorBlocked = false;
+    }
   }
-  else{
+    if (digitalRead(pin) == HIGH) { //Has to be changed to LOW as soon as all sensores are connected
+      // do something with the pin value, then block it for 2 seconds
+      isSensorBlocked = true;
+      blockStartMillis = millis();
+      return true;
+    }
+    else {
     return false;
-  }
+    }
 }
 
 void sendDataViaUSB(){
   if(dataAtSensor1){
-    Serial.println("1 : " + workingLine + " : " + dbTimeArray[1][workingLine]);
+    String dataToSend = "1 : " + String(workingLine) + " : " + String(dbTimeArray[1][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor1 = false;
   }
   if(dataAtSensor2){
-    Serial.println("2 : " + workingLine + " : " + dbTimeArray[2][workingLine]);
+    String dataToSend = "2 : " + String(workingLine) + " : " + String(dbTimeArray[2][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor2 = false;
   }
   if(dataAtSensor3){
-    Serial.println("3 : " + workingLine + " : " + dbTimeArray[3][workingLine]);
+    String dataToSend = "3 : " + String(workingLine) + " : " + String(dbTimeArray[3][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor3 = false;
   }
   if(dataAtSensor4){
-    Serial.println("4 : " + workingLine + " : " + dbTimeArray[4][workingLine]);
+    String dataToSend = "4 : " + String(workingLine) + " : " + String(dbTimeArray[4][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor4 = false;
   }
   if(dataAtSensor5){
-    Serial.println("5 : " + workingLine + " : " + dbTimeArray[5][workingLine]);
+    String dataToSend = "5 : " + String(workingLine) + " : " + String(dbTimeArray[5][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor5 = false;
   }
   if(dataAtSensor6){
-    Serial.println("6 : " + workingLine + " : " + dbTimeArray[6][workingLine]);
+    String dataToSend = "6 : " + String(workingLine) + " : " + String(dbTimeArray[6][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor6 = false;
   }
   if(dataAtSensor7){
-    Serial.println("7 : " + workingLine + " : " + dbTimeArray[7][workingLine]);
+    String dataToSend = "7 : " + String(workingLine) + " : " + String(dbTimeArray[7][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor7 = false;
   }
   if(dataAtSensor8){
-    Serial.println("8 : " + workingLine + " : " + dbTimeArray[8][workingLine]);
+    String dataToSend = "8 : " + String(workingLine) + " : " + String(dbTimeArray[8][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor8 = false;
   }
   if(dataAtSensor9){
-    Serial.println("9 : " + workingLine + " : " + dbTimeArray[9][workingLine]);
+    String dataToSend = "9 : " + String(workingLine) + " : " + String(dbTimeArray[9][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor9 = false;
   }
   if(dataAtSensor10){
-    Serial.println("10 : " + workingLine + " : " + dbTimeArray[10][workingLine]);
+    String dataToSend = "10 : " + String(workingLine) + " : " + String(dbTimeArray[10][workingLine]);
+    Serial.println(dataToSend);
     dataAtSensor10 = false;
   }
 
 }
 
-
 bool handshake(){
-  bool hasfinished1, hasfinished2 = false;
-  String recive1, recive2;
-  while(hasfinished1 != true){
-    if(Serial.available() != 0){
-      recive1 = Serial.readStringUntil('\r');
-      if(recive1 != "C"){
-        delay(1);
-      }
-      else{
+  bool hasfinished1 = false;
+  bool hasfinished2 = false;
+  String recive1;
+  String recive2;
+  String recive0;
+
+  while (!hasfinished1) {
+    if (Serial.available()) {
+      recive1 = Serial.readString();
+      if (recive1.indexOf("C") >= 0) {
         Serial.println("C");
         hasfinished1 = true;
-        unsigned long currentmillis = millis();  // get the current time
-        if (currentmillis - previousmillis >= intervalHandshake) {
-          previousmillis = currentmillis;  // update the previous time
+        delay(500);  // wait for the receiver to process the message
         }
-      }
     }
   }
-  while(hasfinished2 != true){
-    if(Serial.available() != 0){
-      recive2 = Serial.readStringUntil('\r');
-      if(recive2 != "R"){
-      }
-      else{
+
+  while (!hasfinished2) {
+    if (Serial.available()) {
+      recive2 = Serial.readString();
+      if (recive2.indexOf("R") >= 0) {
         hasfinished2 = true;
-        unsigned long currentmillis = millis();  // get the current time
-        if (currentmillis - previousmillis >= intervalHandshake) {
-          previousmillis = currentmillis;  // update the previous time
-        }
         return true;
       }
     }
   }
+
+  return false;
 }
 
 
