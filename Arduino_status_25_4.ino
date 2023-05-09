@@ -41,12 +41,49 @@ bool isPinRecifingHIGH(int pin){
   }
 }
 
-//void sendDataViaUSB(){
+void sendDataViaUSB(){
+  if(dataAtSensor1){
+    Serial.println("1 : " + workingLine + " : " + dbTimeArray[1][workingLine]);
+    dataAtSensor1 = false;
+  }
+  if(dataAtSensor2){
+    Serial.println("2 : " + workingLine + " : " + dbTimeArray[2][workingLine]);
+    dataAtSensor2 = false;
+  }
+  if(dataAtSensor3){
+    Serial.println("3 : " + workingLine + " : " + dbTimeArray[3][workingLine]);
+    dataAtSensor3 = false;
+  }
+  if(dataAtSensor4){
+    Serial.println("4 : " + workingLine + " : " + dbTimeArray[4][workingLine]);
+    dataAtSensor4 = false;
+  }
+  if(dataAtSensor5){
+    Serial.println("5 : " + workingLine + " : " + dbTimeArray[5][workingLine]);
+    dataAtSensor5 = false;
+  }
+  if(dataAtSensor6){
+    Serial.println("6 : " + workingLine + " : " + dbTimeArray[6][workingLine]);
+    dataAtSensor6 = false;
+  }
+  if(dataAtSensor7){
+    Serial.println("7 : " + workingLine + " : " + dbTimeArray[7][workingLine]);
+    dataAtSensor7 = false;
+  }
+  if(dataAtSensor8){
+    Serial.println("8 : " + workingLine + " : " + dbTimeArray[8][workingLine]);
+    dataAtSensor8 = false;
+  }
+  if(dataAtSensor9){
+    Serial.println("9 : " + workingLine + " : " + dbTimeArray[9][workingLine]);
+    dataAtSensor9 = false;
+  }
+  if(dataAtSensor10){
+    Serial.println("10 : " + workingLine + " : " + dbTimeArray[10][workingLine]);
+    dataAtSensor10 = false;
+  }
 
-//Serial.digitalWrite("")
-
-
-//}
+}
 
 
 bool handshake(){
